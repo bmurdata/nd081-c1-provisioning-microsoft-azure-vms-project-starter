@@ -18,7 +18,7 @@ Requirements were as follows:
   Based upon the pros and cons listed above, I  selected App Service.   
   * Usage will be limited, or non existent, making a pay-as-you go model appealing. 
   * The app is small, and I would rather not have to deal with installing web servers, port configuration, domain registration, etc. for it. 
-  * The project has no requirements for data storage, and is generally small.
+  * The project has no requirements for data storage, and is small.
   
 ## Assesing future needs
    In order for me to switch to virtual machines a few things would be needed. 
