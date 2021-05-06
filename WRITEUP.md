@@ -4,10 +4,11 @@
    
    Before making my choice, I made a pros and cons table below.  
    
-| Service      | Pros | Cons | Scale | Cost |  
-| ----------- | ----------- | ----------- | ----------- |  
-| App Services      | Title       | Text        | Text        |  
-| Virtual Machines   | Most simialar to traditional method of deploy- more resources and tutorials available, can install what is needed, more control        | Text        | Text        |  
+| Service | Pros| Cons | Scale | Cost |  
+| ----------- | ----------- | ----------- | ----------- |   ----------- |
+| App Services      | Title       | Text        | Text|  Text|
+| Virtual Machines   |  | Text        | Text        |  text| 
+
 ## Virtual Machines-
 Cons:  single machine, point of failure, need to monitor OS and everything installed on machine, pay for resources if used or not.
 Pros: Most simialar to traditional method of deploy- more resources and tutorials available, can install what is needed, more control, always
