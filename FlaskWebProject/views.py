@@ -48,6 +48,7 @@ def new_post():
 def post(id):
     post = Post.query.get(int(id))
     form = PostForm(formdata=request.form, obj=post)
+    
     if form.validate_on_submit():
         post.save_changes(form, request.files['image_path'], current_user.id)
         return redirect(url_for('home'))
@@ -57,7 +58,29 @@ def post(id):
         imageSource=imageSourceUrl,
         form=form
     )
-
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete(id):
+    post = Post.query.get(int(id))
+    if post:
+        app.logger.info("Post with id of: "+str(post.id)+" has been deleted")
+        post.delete_post()
+        flash('Post Deleted')
+    else:
+        flash("Post not found")
+    return redirect(url_for('home'))
+@app.route('/deleteimage/<int:id>', methods=['GET', 'POST'])
+@login_required
+def deleteimage(id):
+    post = Post.query.get(int(id))
+    if post:
+        app.logger.info("Post with id of: "+str(post.id)+" has had image deleted")
+        post.delete_img()
+        post.image_path=None
+        db.session.commit()
+        flash('Image Deleted')
+    
+    return redirect(url_for('home'))
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -66,9 +89,11 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
+            app.logger.warning("Login attempt failed log 2")
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
+        app.logger.warning("User: "+user.username+" logged in successfully")
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
@@ -82,6 +107,7 @@ def authorized():
     if request.args.get('state') != session.get("state"):
         return redirect(url_for("home"))  # No-OP. Goes back to Index page
     if "error" in request.args:  # Authentication/Authorization failure
+        app.logger.warning("Invalid Login attempt detected")
         return render_template("auth_error.html", result=request.args)
     if request.args.get('code'):
         cache = _load_cache()
@@ -97,12 +123,14 @@ def authorized():
         # Note: In a real app, we'd use the 'name' property from session["user"] below
         # Here, we'll use the admin username for anyone who is authenticated by MS
         user = User.query.filter_by(username="admin").first()
+        app.logger.warning("Microsoft account with name of: "+session["user"]["name"]+" has logged in")
         login_user(user)
         _save_cache(cache)
     return redirect(url_for('home'))
 
 @app.route('/logout')
 def logout():
+    app.logger.warning("User logging out")
     logout_user()
     if session.get("user"): # Used MS Login
         # Wipe out user and its token cache from session

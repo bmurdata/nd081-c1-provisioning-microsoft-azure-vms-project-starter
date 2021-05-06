@@ -41,7 +41,7 @@ class Post(db.Model):
     image_path = db.Column(db.String(100))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
+    subtitle=db.Column(db.String(150))
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
@@ -50,7 +50,7 @@ class Post(db.Model):
         self.author = form.author.data
         self.body = form.body.data
         self.user_id = userId
-
+        self.subtitle=form.subtitle.data or None
         if file:
             filename = secure_filename(file.filename);
             fileextension = filename.rsplit('.',1)[1];
@@ -65,4 +65,18 @@ class Post(db.Model):
             self.image_path =  filename
         if new:
             db.session.add(self)
+        db.session.commit()
+    # Delete image from Post hopefully
+    def delete_img(self):
+        if self.image_path:
+            try:
+                blob_service.delete_blob(blob_container,self.image_path)
+            except:
+                pass
+
+    # Remove post and image
+    def delete_post(self):
+        if self.image_path:
+            blob_service.delete_blob(blob_container,self.image_path)
+        db.session.delete(self)
         db.session.commit()

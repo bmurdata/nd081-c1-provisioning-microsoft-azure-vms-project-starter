@@ -2,6 +2,7 @@
 
 {% block content %}
 <div>
+    <p>Your articles are listed below!</p>
     <div class="row" style="margin-top: 25px;">
         <table class="table">
             <thead class="thead-dark">
@@ -22,6 +23,8 @@
                 <td>{{ post.author }}</td>
                 <td>{{ post.image_path != None }}</td>
                 <td><a href="{{ url_for('post', id=post.id) }}">Edit Post</a></td>
+                <td><a href="{{url_for('delete', id=post.id)}}">Delete Post</a></td>
+                <td><a href="{{url_for('deleteimage', id=post.id)}}">Remove Image</a></td>
             </tr>
             {% endfor %}
         </table>
