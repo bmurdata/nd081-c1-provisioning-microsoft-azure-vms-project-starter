@@ -3,6 +3,7 @@
    Azure cloud infastructure offers many ways to deploy applications. Virtual machines allow developers to build as if they were on their local machine. This simplifies transition from local machines, at the cost of increased overhead in the form of increased OS and code management. App services allow developers to deploy web applications directly to Azure from local.This allows them to focus only on code, at the cost of flexibility as one is limited to Azure supported langauges. 
    
    Before making my choice, I made a pros and cons table below.  
+   
 | Service      | Pros | Cons | Scale | Cost |  
 | ----------- | ----------- | ----------- | ----------- |  
 | App Services      | Title       | Text        | Text        |  
