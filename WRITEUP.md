@@ -7,12 +7,10 @@
 | Service | Pros| Cons | Scale | Cost |  
 | ----------- | ----------- | ----------- | ----------- |   ----------- |
 | App Services      | Title       | Text        | Text|  Text|
-| Virtual Machines   |  | Text        | Text        |  text| 
+| Virtual Machines   | More traditional method to deploy, tutorials and resources more abundant, gaurenteed resources  | Single point of failure, requires management of OS and programs        | Requires new machines and installations        |  Fixed monthly costs| 
 
 ## Virtual Machines-
-Cons:  single machine, point of failure, need to monitor OS and everything installed on machine, pay for resources if used or not.
-Pros: Most simialar to traditional method of deploy- more resources and tutorials available, can install what is needed, more control, always
-have X resources available
+
 Scale: Must create new virtual machines, then install any code dependencies to them.  
 Cost: Fixed based on instance. 
 Workflow: Take code that works on location machine, upload to machine via Github etc. 
