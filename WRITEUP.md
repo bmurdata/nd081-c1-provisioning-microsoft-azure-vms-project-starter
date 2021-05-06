@@ -6,24 +6,16 @@
    
 | Service | Pros| Cons | Scale | Cost |  
 | ----------- | ----------- | ----------- | ----------- |   ----------- |
-| App Services      | Title       | Text        | Text|  Text|
-| Virtual Machines   | More traditional method to deploy, tutorials and resources more abundant, gaurenteed resources  | Single point of failure, requires management of OS and programs        | Requires new machines and installations        |  Fixed monthly costs| 
-
-## Virtual Machines-
-
-Scale: Must create new virtual machines, then install any code dependencies to them.  
-Cost: Fixed based on instance. 
-Workflow: Take code that works on location machine, upload to machine via Github etc. 
-Availability: Depends on machine or machines, 100% dependant on it.
-## App Service-
-Cons: Limited in programming languages, tutorials more limited, limited control over host machine or OS, non-traditional
-Pros: Pay for what you use, can scale out to handle larger loads and in to minimize costs during downtime.
-Scale: Can manually or set autoscale rules. 
-Cost: Dependent on usage, as usage increases so does cost.  
+| App Services      | Focus on code without worrying about OS or updates       | Newer, limited language support, less tutorials, limited control         | Automatic or manual scale based on needs|  Based on usage and service plan|
+| Virtual Machines   | More traditional method to deploy, tutorials and resources more abundant, gaurenteed resources, more control  | Single point of failure, requires management of OS and software-web servers, code interpreters, etc.        | Requires new machines and installations        |  Fixed monthly costs| 
 
 ## Choice
 
-  Based upon the pros and cons listed above, I have selected App Service for deployment. I chose App Services as I don't anticipate much usage, making paying a fixed cost less apepealing. 
-### Assess app changes that would change your decision.
-
-*Detail how the app and any other needs would have to change for you to change your decision in the last section.* 
+  Based upon the pros and cons listed above, I have selected App Service for deployment. Usage will be limited, or non existent, making a pay-as-you go model appealing. The app is small, and I would rather not have to deal with installing web servers, port configuration, domain registration, etc. for it. Finally, the project 
+  
+## Assesing future needs
+   In order for me to switch to virtual machines a few things would be needed. 
+   
+   * If data and application were required to be on the same machine in a specific area, such as HIPAA requirements, I would move to virtual machiens to gaurentee it. 
+   * If the app required a certain level of resources be available at all times, then a virtual machine may make sense. 
+   * App usage would have to go up significantly, to make costs on par or less than running the application on app services. Alternatively, data storage costs would have to up, as at a certain point having VM with a MySQL server may cost the same or less.
